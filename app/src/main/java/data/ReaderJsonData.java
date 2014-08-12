@@ -40,6 +40,12 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
     public JSONObject jsonResp;
     public int Tab;
     public SharedPreferences prefs;
+    //Para el tab de infantería
+    public ListView listaCG;
+    public ListView listaLinea;
+    public ListView listaElite;
+    public ListView listaApoyoPesado;
+    public ListView listaAtaqueRapido;
 
     @Override
     protected Boolean doInBackground(String... strings) {
@@ -133,23 +139,23 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                 JSONArray apoyoPesado = jsonResp.getJSONObject("Infanteria").getJSONArray("ApoyoPesado");
                 JSONArray ataqueRapido = jsonResp.getJSONObject("Infanteria").getJSONArray("AtaqueRapido");
 
-                RellenarListadoInfanteria(datosLista, cg);
-                RellenarListadoInfanteria(datosLista, linea);
-                RellenarListadoInfanteria(datosLista, elite);
-                RellenarListadoInfanteria(datosLista, apoyoPesado);
-                RellenarListadoInfanteria(datosLista, ataqueRapido);
-
-                InfanteriaAdapter infanteriaAdapter = new InfanteriaAdapter(context, datosLista);
-                lista.setAdapter(infanteriaAdapter);
+                listaCG.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(cg)));
+                listaLinea.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(linea)));
+                listaElite.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(elite)));
+                listaApoyoPesado.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(apoyoPesado)));
+                listaAtaqueRapido.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(ataqueRapido)));
             }
         }catch (Exception Ex){
             Log.e("ERROR", Ex.getMessage());
         }
     }
 
-    private void RellenarListadoInfanteria(ArrayList listaDatos, JSONArray arrayInfanteria){
+    private ArrayList RellenarListadoInfanteria(JSONArray arrayInfanteria){
+        ArrayList listaDatos = new ArrayList();
         try {
             Infanteria infanteria;
+
+
             for (int i = 0; i < arrayInfanteria.length(); i++) {
                 infanteria = new Infanteria();
                 JSONObject jsonInfanteria = arrayInfanteria.getJSONObject(i);
@@ -172,6 +178,7 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
         }catch (Exception ex){
             Log.d("TEST ERROR", ex.getMessage());
         }
+        return listaDatos;
     }
     private Integer GetMinValue(Object value){
         try{

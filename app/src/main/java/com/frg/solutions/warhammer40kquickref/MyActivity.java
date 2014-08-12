@@ -268,11 +268,11 @@ public class MyActivity extends Activity implements ActionBar.TabListener {
 
                 tabs.setCurrentTab(0);
 
-
-                ListView listVInfanteria = (ListView) tabs.findViewById(R.id.listVInfanteria);
-                if(listVInfanteria.getChildCount() == 0){
-                    reader.lista = listVInfanteria;
-                }
+                reader.listaCG = (ListView)tabs.findViewById(R.id.listVCG);
+                reader.listaLinea = (ListView)tabs.findViewById(R.id.listVInfanteria);
+                reader.listaElite = (ListView)tabs.findViewById(R.id.listVElite);
+                reader.listaApoyoPesado = (ListView)tabs.findViewById(R.id.listVApoyoPesado);
+                reader.listaAtaqueRapido = (ListView)tabs.findViewById(R.id.listVAtaqueRapido);
             }
             if(tabIndex == 3){
                 rootView = inflater.inflate(R.layout.tab_vehiculos, container, false);
@@ -316,9 +316,7 @@ public class MyActivity extends Activity implements ActionBar.TabListener {
             }
 
             reader.execute("");
-            //TextView txt = (TextView) rootView.findViewById(R.id.section_label);
-            //Bundle bundle = this.getArguments();
-            //txt.setText("OLA KE ASE !? " + bundle.getInt(ARG_SECTION_NUMBER));
+
             return rootView;
         }
     }
