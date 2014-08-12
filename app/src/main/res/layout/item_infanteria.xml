@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guerrero Necrón"
+        android:id="@+id/item_infanteria_nombre" />
+
+    <TableLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TableRow>
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="HA" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="HP" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="F" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="R" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="H" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="I" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="A" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="L" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="S" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="SI" android:paddingRight="10dp" />
+            <TextView android:textStyle="bold" android:textColor="#000" android:text="Pág." android:paddingRight="10dp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_ha" android:text="4" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_hp" android:text="4" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_f" android:text="4" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_r" android:text="4" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_h" android:text="1" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_i" android:text="2" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_a" android:text="1" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_l" android:text="10" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_s" android:text="4" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_si" android:text="0" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:id="@+id/item_infanteria_pagina" android:text="34" android:paddingRight="10dp" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
