@@ -32,6 +32,7 @@ public class InfanteriaAdapter extends W40KAdapterBase {
             holder.f = (TextView) convertView.findViewById(R.id.item_infanteria_f);
             holder.r = (TextView) convertView.findViewById(R.id.item_infanteria_r);
             holder.i = (TextView) convertView.findViewById(R.id.item_infanteria_i);
+            holder.h = (TextView) convertView.findViewById(R.id.item_infanteria_h);
             holder.a = (TextView) convertView.findViewById(R.id.item_infanteria_a);
             holder.l = (TextView) convertView.findViewById(R.id.item_infanteria_l);
             holder.s = (TextView) convertView.findViewById(R.id.item_infanteria_s);
@@ -46,19 +47,18 @@ public class InfanteriaAdapter extends W40KAdapterBase {
         Infanteria infanteria = (Infanteria)datos.get(position);
 
         holder.nombre.setText(infanteria.getNombre());
-        Log.d("TEST", "HA: " + infanteria.getHabilidadArma());
- /*        holder.pagina.setText(infanteria.getPagina());
-        holder.ha.setText(infanteria.getHabilidadArma());
-        holder.hp.setText(infanteria.getHabilidadProyectiles());
-        holder.f.setText(infanteria.getFuerza());
-        holder.r.setText(infanteria.getResistencia());
-       holder.i.setText(infanteria.getIniciativa());
-        holder.h.setText(infanteria.getHeridas());
-        holder.a.setText(infanteria.getAtaque());
-        holder.l.setText(infanteria.getLiderazgo());
-        holder.s.setText(infanteria.getSalvacion());
-        holder.si.setText(infanteria.getSalvacionInvulnerable());
-        */
+        holder.ha.setText(infanteria.getHabilidadArma().toString());
+        holder.pagina.setText(infanteria.getPagina().toString());
+        holder.hp.setText(infanteria.getHabilidadProyectiles().toString());
+        holder.f.setText(infanteria.getFuerza().toString());
+        holder.r.setText(infanteria.getResistencia().toString());
+        holder.h.setText(infanteria.getHeridas().toString());
+        holder.i.setText(infanteria.getIniciativa().toString());
+        holder.a.setText(infanteria.getAtaque().toString());
+        holder.l.setText(infanteria.getLiderazgo().toString());
+        holder.s.setText(infanteria.getSalvacion().toString());
+        holder.si.setText(infanteria.getSalvacionInvulnerable().toString());
+
         return convertView;
     }
 

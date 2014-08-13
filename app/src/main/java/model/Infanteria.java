@@ -5,17 +5,17 @@ package model;
  */
 public class Infanteria {
     private String nombre;
-    private int habilidadArma;
-    private int habilidadProyectiles;
-    private int fuerza;
-    private int resistencia;
-    private int heridas;
-    private int iniciativa;
-    private int ataque;
-    private int liderazgo;
-    private int salvacion;
-    private int salvacionInvulnerable;
-    private int pagina;
+    private Integer habilidadArma;
+    private Integer habilidadProyectiles;
+    private Integer fuerza;
+    private Integer resistencia;
+    private Integer heridas;
+    private Integer iniciativa;
+    private Integer ataque;
+    private Integer liderazgo;
+    private Integer salvacion;
+    private Integer salvacionInvulnerable;
+    private Integer pagina;
 
     public String getNombre() {
         return nombre;
@@ -25,7 +25,9 @@ public class Infanteria {
         this.nombre = nombre;
     }
 
-    public int getHabilidadArma() {
+    public Integer getHabilidadArma() {
+        if(habilidadArma == null)
+            return 0;
         return habilidadArma;
     }
 
@@ -33,7 +35,9 @@ public class Infanteria {
         this.habilidadArma = habilidadArma;
     }
 
-    public int getHabilidadProyectiles() {
+    public Integer getHabilidadProyectiles() {
+        if(habilidadProyectiles == null)
+            return 0;
         return habilidadProyectiles;
     }
 
@@ -41,7 +45,9 @@ public class Infanteria {
         this.habilidadProyectiles = habilidadProyectiles;
     }
 
-    public int getFuerza() {
+    public Integer getFuerza() {
+        if(fuerza== null)
+            return 0;
         return fuerza;
     }
 
@@ -49,7 +55,10 @@ public class Infanteria {
         this.fuerza = fuerza;
     }
 
-    public int getResistencia() {
+    public Integer getResistencia() {
+        if(resistencia == null)
+            return 0;
+
         return resistencia;
     }
 
@@ -57,7 +66,9 @@ public class Infanteria {
         this.resistencia = resistencia;
     }
 
-    public int getHeridas() {
+    public Integer getHeridas() {
+        if(heridas == null)
+            return 0;
         return heridas;
     }
 
@@ -65,7 +76,9 @@ public class Infanteria {
         this.heridas = heridas;
     }
 
-    public int getIniciativa() {
+    public Integer getIniciativa() {
+        if(iniciativa == null)
+            return 0;
         return iniciativa;
     }
 
@@ -73,7 +86,9 @@ public class Infanteria {
         this.iniciativa = iniciativa;
     }
 
-    public int getAtaque() {
+    public Integer getAtaque() {
+        if(ataque == null)
+            return 0;
         return ataque;
     }
 
@@ -81,7 +96,9 @@ public class Infanteria {
         this.ataque = ataque;
     }
 
-    public int getLiderazgo() {
+    public Integer getLiderazgo() {
+        if(liderazgo == null)
+            return 0;
         return liderazgo;
     }
 
@@ -89,7 +106,9 @@ public class Infanteria {
         this.liderazgo = liderazgo;
     }
 
-    public int getSalvacion() {
+    public Integer getSalvacion() {
+        if(salvacion == null)
+            return 0;
         return salvacion;
     }
 
@@ -97,7 +116,9 @@ public class Infanteria {
         this.salvacion = salvacion;
     }
 
-    public int getSalvacionInvulnerable() {
+    public Integer getSalvacionInvulnerable() {
+        if(salvacionInvulnerable == null)
+            return 0;
         return salvacionInvulnerable;
     }
 
@@ -105,7 +126,9 @@ public class Infanteria {
         this.salvacionInvulnerable = salvacionInvulnerable;
     }
 
-    public int getPagina() {
+    public Integer getPagina() {
+        if(pagina == null)
+            return 0;
         return pagina;
     }
 

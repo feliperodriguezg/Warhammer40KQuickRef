@@ -180,6 +180,17 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                 infanteria.setSalvacion(GetMinValue(jsonInfanteria.get("S")));
                 infanteria.setSalvacionInvulnerable(GetMinValue(jsonInfanteria.get("SI")));
                 infanteria.setPagina(GetMinValue(jsonInfanteria.get("Pagina")));
+                Log.d("TEST", "NOMBRE: " + infanteria.getNombre());
+                Log.d("TEST", "ha: " + infanteria.getHabilidadArma());
+                Log.d("TEST", "hp: " + infanteria.getHabilidadProyectiles());
+                Log.d("TEST", "f: " + infanteria.getFuerza());
+                Log.d("TEST", "r: " + infanteria.getResistencia());
+                Log.d("TEST", "i: " + infanteria.getIniciativa());
+                Log.d("TEST", "h: " + infanteria.getHeridas());
+                Log.d("TEST", "a: " + infanteria.getAtaque());
+                Log.d("TEST", "l: " + infanteria.getLiderazgo());
+                Log.d("TEST", "s: " + infanteria.getSalvacion());
+                Log.d("TEST", "si: " + infanteria.getSalvacionInvulnerable());
 
                 listaDatos.add(infanteria);
             }
