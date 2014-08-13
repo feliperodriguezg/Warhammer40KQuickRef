@@ -32,10 +32,10 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <TextView
+                    <ListView
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="TAB 1"/>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listVCG" />
 
                  </LinearLayout>
 
@@ -43,10 +43,10 @@
                     android:id="@+id/tab2"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
-                    <TextView
+                    <ListView
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="TAB 2"/>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listVLinea" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -54,10 +54,10 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <TextView
+                    <ListView
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="TAB 3"/>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listVElite" />
 
                 </LinearLayout>
 
@@ -66,10 +66,10 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <TextView
+                    <ListView
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="TAB 4"/>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listVApoyoPesado" />
 
                 </LinearLayout>
 
@@ -78,10 +78,10 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <TextView
+                    <ListView
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="TAB 5"/>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listVAtaqueRapido" />
 
                 </LinearLayout>
             </FrameLayout>

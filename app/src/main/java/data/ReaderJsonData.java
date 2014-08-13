@@ -30,6 +30,7 @@ import model.Arma;
 import model.Infanteria;
 import model.Regla;
 import model.TipoArma;
+import model.Vehiculo;
 
 /**
  * Created by felipe on 7/08/14.
@@ -169,6 +170,60 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                         listaAtaqueRapido.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(ataqueRapido)));
                     }
 
+                }
+                if(Tab == R.layout.tab_vehiculos){
+                    JSONArray objVehiculos = jsonResp.getJSONArray("Vehiculos");
+                    if(objVehiculos != null){
+                        int position = 0;
+                        int positionArma = 0;
+                        int positionRegla = 0;
+                        ArrayList alistaCG = new ArrayList();
+                        ArrayList alistaLinea = new ArrayList();
+                        ArrayList alistaElite = new ArrayList();
+                        ArrayList alistaApoyoPesado = new ArrayList();
+                        ArrayList alistaAtaqueRapido = new ArrayList();
+
+                        for(position = 0; position < objVehiculos.length(); position++){
+                            JSONObject objVehiculo = objVehiculos.getJSONObject(position);
+                            if(objVehiculo != null){
+
+                                Vehiculo vehiculo = new Vehiculo();
+                                vehiculo.setSlot(objVehiculo.getString("SLOT"));
+                                vehiculo.setNombre(objVehiculo.getString("NOMBRE"));
+                                vehiculo.setBf(objVehiculo.getInt("BF"));
+                                vehiculo.setBl(objVehiculo.getInt("BL"));
+                                vehiculo.setBt(objVehiculo.getInt("BT"));
+                                vehiculo.setPa(objVehiculo.getInt("PA"));
+                                vehiculo.setPagina(objVehiculo.getInt("PAGINA"));
+
+                                JSONArray jsonArmas = objVehiculo.getJSONArray("Armas");
+                                for(positionArma = 0; positionArma < jsonArmas.length(); positionArma++){
+                                    //TODO: Obtener armas
+                                }
+
+                                JSONArray jsonReglas = objVehiculo.getJSONArray("Reglas");
+                                for(positionRegla = 0; positionRegla < jsonReglas.length(); positionRegla++){
+                                    //TODO: Obtener reglas
+                                }
+
+                                String slotVehiculo = vehiculo.getSlot();
+
+                                if(slotVehiculo == "CG"){
+                                    alistaCG.add(vehiculo);
+                                }else if(slotVehiculo == "LINEA"){
+                                    alistaLinea.add(vehiculo);
+                                }else if(slotVehiculo == "ELITE"){
+                                    alistaElite.add(vehiculo);
+                                }else if(slotVehiculo == "APOYO PESADO"){
+                                    alistaApoyoPesado.add(vehiculo);
+                                }else if(slotVehiculo == "ATAQUE RAPIDO"){
+                                    alistaAtaqueRapido.add(vehiculo);
+                                }else if(slotVehiculo == "TRANSPORTE ASIGNADO"){
+                                    alistaLinea.add(vehiculo);
+                                }
+                            }
+                        }
+                    }
                 }
             } catch (Exception Ex) {
 

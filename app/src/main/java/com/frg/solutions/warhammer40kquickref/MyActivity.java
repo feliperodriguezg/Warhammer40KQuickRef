@@ -317,6 +317,12 @@ public class MyActivity extends Activity implements ActionBar.TabListener {
                 tabs.addTab(spec);
 
                 tabs.setCurrentTab(0);
+
+                reader.listaCG = (ListView)tabs.findViewById(R.id.listVCG);
+                reader.listaLinea = (ListView)tabs.findViewById(R.id.listVInfanteria);
+                reader.listaElite = (ListView)tabs.findViewById(R.id.listVElite);
+                reader.listaApoyoPesado = (ListView)tabs.findViewById(R.id.listVApoyoPesado);
+                reader.listaAtaqueRapido = (ListView)tabs.findViewById(R.id.listVAtaqueRapido);
             }
 
             reader.execute("");

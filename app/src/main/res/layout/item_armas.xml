@@ -37,6 +37,7 @@
             <LinearLayout
                 android:id="@+id/layout_lista_tipo_arma"
                 android:orientation="horizontal"
+                android:minWidth="40dp"
                 android:layout_width="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_height="wrap_content">
