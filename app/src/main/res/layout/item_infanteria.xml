@@ -18,6 +18,7 @@
         android:id="@+id/item_infanteria_nombre" />
 
     <TableLayout
+        android:id="@+id/table_infanteria"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

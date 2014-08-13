@@ -1,6 +1,7 @@
 package adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class InfanteriaAdapter extends W40KAdapterBase {
 
             holder = new ViewHolder();
             holder.nombre = (TextView) convertView.findViewById(R.id.item_infanteria_nombre);
-            holder.ha = (TextView) convertView.findViewById(R.id.item_infanteria_ha);
+            holder.ha = (TextView)  convertView.findViewById(R.id.item_infanteria_ha);
             holder.hp = (TextView) convertView.findViewById(R.id.item_infanteria_hp);
             holder.f = (TextView) convertView.findViewById(R.id.item_infanteria_f);
             holder.r = (TextView) convertView.findViewById(R.id.item_infanteria_r);
@@ -45,17 +46,19 @@ public class InfanteriaAdapter extends W40KAdapterBase {
         Infanteria infanteria = (Infanteria)datos.get(position);
 
         holder.nombre.setText(infanteria.getNombre());
-/*        holder.ha.setText(infanteria.getHabilidadArma());
+        Log.d("TEST", "HA: " + infanteria.getHabilidadArma());
+ /*        holder.pagina.setText(infanteria.getPagina());
+        holder.ha.setText(infanteria.getHabilidadArma());
         holder.hp.setText(infanteria.getHabilidadProyectiles());
         holder.f.setText(infanteria.getFuerza());
         holder.r.setText(infanteria.getResistencia());
-        holder.i.setText(infanteria.getIniciativa());
+       holder.i.setText(infanteria.getIniciativa());
         holder.h.setText(infanteria.getHeridas());
         holder.a.setText(infanteria.getAtaque());
         holder.l.setText(infanteria.getLiderazgo());
         holder.s.setText(infanteria.getSalvacion());
         holder.si.setText(infanteria.getSalvacionInvulnerable());
-        holder.pagina.setText(infanteria.getPagina());*/
+        */
         return convertView;
     }
 

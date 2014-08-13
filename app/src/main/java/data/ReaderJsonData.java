@@ -83,7 +83,7 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
             return result;
 
         } catch (Exception e) {
-            Log.d("TEST ERROR", "Error: " + e.getMessage());
+            Log.e("doInBackground ERROR", "Error: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -95,58 +95,66 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
         Log.d("TEST", "Insertado: " + aBoolean.toString());
+        if(jsonResp != null) {
+            ArrayList datosLista = new ArrayList();
+            try {
+                JSONArray jsonArray;
+                int i;
+                if (Tab == R.layout.tab_reglas) {
+                    jsonArray = jsonResp.getJSONArray("Reglas");
+                    for (i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Regla r = new Regla();
+                        r.setNombre(jsonObject.getString("Nombre"));
+                        r.setDescripcion(jsonObject.getString("Descripcion").replace("<br>", "\r\n"));
 
-        ArrayList datosLista = new ArrayList();
-        try {
-            JSONArray jsonArray;
-            int i;
-            if(Tab == R.layout.tab_reglas) {
-                jsonArray = jsonResp.getJSONArray("Reglas");
-                for (i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Regla r = new Regla();
-                    r.setNombre(jsonObject.getString("Nombre"));
-                    r.setDescripcion(jsonObject.getString("Descripcion").replace("<br>", "\r\n"));
+                        datosLista.add(r);
+                    }
 
-                    datosLista.add(r);
+                    ReglasAdapter reglasAdapter = new ReglasAdapter(context, datosLista);
+                    lista.setAdapter(reglasAdapter);
                 }
+                if (Tab == R.layout.tab_armas) {
+                    jsonArray = jsonResp.getJSONArray("Armas");
+                    for (i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonArma = jsonArray.getJSONObject(i);
+                        Arma a = new Arma();
+                        a.setNombre(jsonArma.getString("Nombre"));
+                        a.setAlcance(jsonArma.getString("Alcance"));
+                        a.setF(jsonArma.getString("F"));
+                        a.setFP(jsonArma.getString("FP"));
+                        a.setPagina(jsonArma.getString("Pagina"));
+                        a.setTipo("Fuego rápido 2, Gauss");
 
-                ReglasAdapter reglasAdapter = new ReglasAdapter(context, datosLista);
-                lista.setAdapter(reglasAdapter);
-            }
-            if(Tab == R.layout.tab_armas){
-                jsonArray = jsonResp.getJSONArray("Armas");
-                for(i = 0; i < jsonArray.length(); i++){
-                    JSONObject jsonArma = jsonArray.getJSONObject(i);
-                    Arma a = new Arma();
-                    a.setNombre(jsonArma.getString("Nombre"));
-                    a.setAlcance(jsonArma.getString("Alcance"));
-                    a.setF(jsonArma.getString("F"));
-                    a.setFP(jsonArma.getString("FP"));
-                    a.setPagina(jsonArma.getString("Pagina"));
-                    a.setTipo("Fuego rápido 2, Gauss");
+                        datosLista.add(a);
+                    }
 
-                    datosLista.add(a);
+                    ArmasAdapter armasAdapter = new ArmasAdapter(context, datosLista);
+                    lista.setAdapter(armasAdapter);
+
                 }
+                if (Tab == R.layout.tab_infanteria) {
+                    JSONObject objInfanteria = jsonResp.getJSONObject("Infanteria");
+                    if (objInfanteria != null) {
+                        JSONArray cg = objInfanteria.getJSONArray("CG");
+                        JSONArray linea = objInfanteria.getJSONArray("Linea");
+                        JSONArray elite = objInfanteria.getJSONArray("Elite");
+                        JSONArray apoyoPesado = objInfanteria.getJSONArray("ApoyoPesado");
+                        JSONArray ataqueRapido = objInfanteria.getJSONArray("AtaqueRapido");
 
-                ArmasAdapter armasAdapter = new ArmasAdapter(context, datosLista);
-                lista.setAdapter(armasAdapter);
-            }
-            if(Tab == R.layout.tab_infanteria){
-                JSONArray cg = jsonResp.getJSONObject("Infanteria").getJSONArray("CG");
-                JSONArray linea = jsonResp.getJSONObject("Infanteria").getJSONArray("Linea");
-                JSONArray elite = jsonResp.getJSONObject("Infanteria").getJSONArray("Elite");
-                JSONArray apoyoPesado = jsonResp.getJSONObject("Infanteria").getJSONArray("ApoyoPesado");
-                JSONArray ataqueRapido = jsonResp.getJSONObject("Infanteria").getJSONArray("AtaqueRapido");
+                        listaCG.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(cg)));
+                        listaLinea.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(linea)));
+                        listaElite.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(elite)));
+                        listaApoyoPesado.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(apoyoPesado)));
+                        listaAtaqueRapido.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(ataqueRapido)));
+                    }
 
-                listaCG.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(cg)));
-                listaLinea.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(linea)));
-                listaElite.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(elite)));
-                listaApoyoPesado.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(apoyoPesado)));
-                listaAtaqueRapido.setAdapter(new InfanteriaAdapter(context, RellenarListadoInfanteria(ataqueRapido)));
+                }
+            } catch (Exception Ex) {
+                Log.e("ERROR", Ex.getMessage() + Ex.getLocalizedMessage());
             }
-        }catch (Exception Ex){
-            Log.e("ERROR", Ex.getMessage());
+        }else{
+            Log.w("TEST", "No hay datos de respuesta para mostrar");
         }
     }
 
