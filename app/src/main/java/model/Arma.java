@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Created by felipe on 7/08/14.
  */
@@ -22,6 +24,19 @@ public class Arma
     private String Descripcion;
 
     private String Tipo;
+
+    private ArrayList<TipoArma> tiposArma;
+
+    public Arma(){
+        tiposArma = new ArrayList<TipoArma>();
+    }
+
+    public ArrayList<TipoArma> getTiposArma(){
+        return tiposArma;
+    }
+    public void setTipoArma(TipoArma tipoArma){
+        tiposArma.add(tipoArma);
+    }
 
     public String getTipo(){return Tipo;}
     public void setTipo(String tipo){this.Tipo = tipo;}

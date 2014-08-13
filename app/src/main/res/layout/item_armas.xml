@@ -27,16 +27,27 @@
             <TextView android:textColor="#000" android:textSize="15dp" android:text="Alcance" android:paddingRight="10dp" android:textStyle="bold" />
             <TextView android:textColor="#000" android:textSize="15dp" android:text="F" android:paddingRight="10dp" android:textStyle="bold"/>
             <TextView android:textColor="#000" android:textSize="15dp" android:text="FP" android:paddingRight="10dp" android:textStyle="bold"/>
-            <TextView android:textColor="#000" android:textSize="15dp" android:text="Tipo" android:paddingRight="10dp" android:textStyle="bold"/>
+            <TextView android:textColor="#000" android:textSize="15dp" android:text="Tipo" android:textStyle="bold"/>
             <TextView android:textColor="#000" android:textSize="15dp" android:text="Pág." android:textStyle="bold"/>
         </TableRow>
         <TableRow>
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_arma_alcance" android:text="24 UM" android:paddingRight="10dp" />
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_arma_fuerza" android:text="4" android:paddingRight="10dp" />
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_arma_fp" android:text="5" android:paddingRight="10dp" />
-            <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_arma_tipo" android:text="Fuego rápido 2, Gauss" android:paddingRight="10dp" />
+            <LinearLayout
+                android:id="@+id/layout_lista_tipo_arma"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_height="wrap_content">
+
+
+
+            </LinearLayout>
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_arma_pagina" android:text="30" android:paddingRight="10dp" />
         </TableRow>
     </TableLayout>
+
+
 
 </LinearLayout>

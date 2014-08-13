@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public class W40KAdapterBase extends BaseAdapter {
     protected ArrayList datos;
     protected LayoutInflater layoutInflater;
+    protected Context context;
 
     public W40KAdapterBase(Context context, ArrayList datos){
         this.datos = datos;
         this.layoutInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @Override

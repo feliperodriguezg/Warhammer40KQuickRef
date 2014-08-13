@@ -28,6 +28,7 @@ import adapters.ReglasAdapter;
 import model.Arma;
 import model.Infanteria;
 import model.Regla;
+import model.TipoArma;
 
 /**
  * Created by felipe on 7/08/14.
@@ -53,6 +54,8 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
         Boolean result = false;
 
         try {
+            prefs.edit().remove(KEY_PREFERENCES_DATA).apply();
+
             String dataStr = prefs.getString(KEY_PREFERENCES_DATA, "");
 
             if( !dataStr.isEmpty() ){
@@ -116,6 +119,7 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                 }
                 if (Tab == R.layout.tab_armas) {
                     jsonArray = jsonResp.getJSONArray("Armas");
+
                     for (i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonArma = jsonArray.getJSONObject(i);
                         Arma a = new Arma();
@@ -125,6 +129,20 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                         a.setFP(jsonArma.getString("FP"));
                         a.setPagina(jsonArma.getString("Pagina"));
                         a.setTipo("Fuego rápido 2, Gauss");
+
+                        JSONArray jsonTiposArmas = jsonArma.getJSONArray("TiposArmas");
+                        Log.d("TEST", "Tipos armas: " + jsonTiposArmas.length());
+                        for(int j = 0; j < jsonTiposArmas.length(); j++){
+
+                            TipoArma tipoArma = new TipoArma();
+                            JSONObject jsonTipoArma = jsonTiposArmas.getJSONObject(j);
+
+                            tipoArma.setNombre(jsonTipoArma.getString("NombreTipoArma"));
+                            tipoArma.setCodigo(jsonTipoArma.getString("CodigoTipoArma"));
+                            tipoArma.setCantidad(jsonTipoArma.getInt("Cantidad"));
+
+                            a.setTipoArma(tipoArma);
+                        }
 
                         datosLista.add(a);
                     }
@@ -151,7 +169,8 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
 
                 }
             } catch (Exception Ex) {
-                Log.e("ERROR", Ex.getMessage() + Ex.getLocalizedMessage());
+
+                Log.e("ERROR ReaderJSONData", Ex.getMessage());
             }
         }else{
             Log.w("TEST", "No hay datos de respuesta para mostrar");
@@ -180,7 +199,7 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                 infanteria.setSalvacion(GetMinValue(jsonInfanteria.get("S")));
                 infanteria.setSalvacionInvulnerable(GetMinValue(jsonInfanteria.get("SI")));
                 infanteria.setPagina(GetMinValue(jsonInfanteria.get("Pagina")));
-                Log.d("TEST", "NOMBRE: " + infanteria.getNombre());
+                /*Log.d("TEST", "NOMBRE: " + infanteria.getNombre());
                 Log.d("TEST", "ha: " + infanteria.getHabilidadArma());
                 Log.d("TEST", "hp: " + infanteria.getHabilidadProyectiles());
                 Log.d("TEST", "f: " + infanteria.getFuerza());
@@ -191,7 +210,7 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                 Log.d("TEST", "l: " + infanteria.getLiderazgo());
                 Log.d("TEST", "s: " + infanteria.getSalvacion());
                 Log.d("TEST", "si: " + infanteria.getSalvacionInvulnerable());
-
+*/
                 listaDatos.add(infanteria);
             }
         }catch (Exception ex){
