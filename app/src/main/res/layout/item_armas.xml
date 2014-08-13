@@ -36,7 +36,7 @@
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_arma_fp" android:text="5" android:paddingRight="10dp" />
             <LinearLayout
                 android:id="@+id/layout_lista_tipo_arma"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_height="wrap_content">

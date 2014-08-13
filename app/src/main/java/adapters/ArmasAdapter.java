@@ -1,6 +1,9 @@
 package adapters;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.frg.solutions.warhammer40kquickref.ArmaOnClickListener;
 import com.frg.solutions.warhammer40kquickref.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -21,8 +28,11 @@ import model.TipoArma;
  */
 public class ArmasAdapter extends W40KAdapterBase {
 
-    public ArmasAdapter(Context context, ArrayList datos){
+    private Activity activity;
+
+    public ArmasAdapter(Context context, Activity activity, ArrayList datos){
         super(context, datos);
+        this.activity = activity;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
@@ -34,7 +44,6 @@ public class ArmasAdapter extends W40KAdapterBase {
             holder.alcance = (TextView) convertView.findViewById(R.id.item_arma_alcance);
             holder.fuerza = (TextView) convertView.findViewById(R.id.item_arma_fuerza);
             holder.fp = (TextView) convertView.findViewById(R.id.item_arma_fp);
-            //holder.tipo = (TextView) convertView.findViewById(R.id.item_arma_tipo);
             holder.pagina = (TextView) convertView.findViewById(R.id.item_arma_pagina);
             holder.listaTiposArmas = (LinearLayout) convertView.findViewById(R.id.layout_lista_tipo_arma);
 
@@ -49,8 +58,14 @@ public class ArmasAdapter extends W40KAdapterBase {
         holder.alcance.setText(arma.getAlcance());
         holder.fuerza.setText(arma.getF());
         holder.fp.setText(arma.getFP());
+        AddTiposArmas(arma.getTiposArma(), holder);
 
-        ArrayList<TipoArma> listaTipoArmas = arma.getTiposArma();
+
+        return convertView;
+    }
+
+    private void AddTiposArmas(ArrayList<TipoArma> listaTipoArmas, ViewHolder holder){
+
         for(int i = 0; i < listaTipoArmas.size(); i++){
             TipoArma tArma = listaTipoArmas.get(i);
 
@@ -65,11 +80,28 @@ public class ArmasAdapter extends W40KAdapterBase {
                 ((TextView) lyTipoArma.findViewById(R.id.item_tipo_arma_cantidad)).setText(tArma.getCantidad().toString());
             else
                 ((TextView) lyTipoArma.findViewById(R.id.item_tipo_arma_cantidad)).setText("");
+
+            //Programamos evento on click para lanzar un modal con el título y la descripción
+            lyTipoArma.setOnClickListener(new ArmaOnClickListener(tArma.getNombre(), tArma.getDescripcion()) {
+                @Override
+                public void onClick(View view) {
+                    String nombre = ((TextView) view.findViewById(R.id.item_tipo_arma_nombre)).getText().toString();
+                    String descripcion = ((TextView) view.findViewById(R.id.item_tipo_arma_nombre)).getText().toString();
+                    Log.d("TEST", nombre);
+                    //Toast.makeText(context, value, Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder
+                            .setMessage(this.getDescripcion())
+                            .setTitle(this.getTitulo());
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                }
+            });
+
             holder.listaTiposArmas.addView(lyTipoArma);
         }
-
-
-        return convertView;
     }
 
     static class ViewHolder{
@@ -80,5 +112,6 @@ public class ArmasAdapter extends W40KAdapterBase {
         TextView tipo;
         TextView pagina;
         LinearLayout listaTiposArmas;
+        ArrayList<TipoArma> tiposArma;
     }
 }

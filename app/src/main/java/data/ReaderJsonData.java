@@ -1,5 +1,6 @@
 package data;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -38,6 +39,7 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
     private final static String KEY_PREFERENCES_DATA = "JSONData";
     public ListView lista;
     public Context context;
+    public Activity activity;
     public JSONObject jsonResp;
     public int Tab;
     public SharedPreferences prefs;
@@ -140,14 +142,14 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                             tipoArma.setNombre(jsonTipoArma.getString("NombreTipoArma"));
                             tipoArma.setCodigo(jsonTipoArma.getString("CodigoTipoArma"));
                             tipoArma.setCantidad(jsonTipoArma.getInt("Cantidad"));
-
+                            tipoArma.setDescripcion(jsonTipoArma.getString("DescripcionTipoArma"));
                             a.setTipoArma(tipoArma);
                         }
 
                         datosLista.add(a);
                     }
 
-                    ArmasAdapter armasAdapter = new ArmasAdapter(context, datosLista);
+                    ArmasAdapter armasAdapter = new ArmasAdapter(context, activity, datosLista);
                     lista.setAdapter(armasAdapter);
 
                 }

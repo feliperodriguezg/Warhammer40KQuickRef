@@ -7,11 +7,13 @@ public class TipoArma {
     private String codigo;
     private String nombre;
     private Integer cantidad;
+    private String descripcion;
 
-    public TipoArma(String codigo, String nombre, Integer cantidad){
+    public TipoArma(String codigo, String nombre, Integer cantidad, String descripcion){
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
+        this.descripcion = descripcion;
     }
     public TipoArma(){
 
@@ -26,6 +28,7 @@ public class TipoArma {
     public Integer getCantidad(){
         return cantidad;
     }
+    public String getDescripcion(){return descripcion;}
 
     public void setCodigo(String codigo){
         this.codigo = codigo;
@@ -35,5 +38,8 @@ public class TipoArma {
     }
     public void setCantidad(Integer cantidad){
         this.cantidad = cantidad;
+    }
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
     }
 }

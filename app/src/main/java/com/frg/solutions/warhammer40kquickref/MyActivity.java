@@ -206,6 +206,7 @@ public class MyActivity extends Activity implements ActionBar.TabListener {
 
             ReaderJsonData reader = new ReaderJsonData();
             reader.context = getActivity().getApplicationContext();
+
             reader.prefs = getActivity().getSharedPreferences("com.frg.solutions.warhammer40kquickref", Context.MODE_PRIVATE);
 
             if(tabIndex == 0){
@@ -220,11 +221,14 @@ public class MyActivity extends Activity implements ActionBar.TabListener {
             }
             if(tabIndex == 1){
                 reader.Tab = R.layout.tab_armas;
+                reader.activity = getActivity();
+
                 rootView = inflater.inflate(R.layout.tab_armas, container, false);
 
                 ListView listVArmas = (ListView) rootView.findViewById(R.id.listVArmas);
                 if(listVArmas.getChildCount() == 0){
                     reader.lista = listVArmas;
+
                 }
             }
             if(tabIndex == 2){
