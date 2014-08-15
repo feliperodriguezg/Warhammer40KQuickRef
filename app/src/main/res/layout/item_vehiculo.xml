@@ -33,7 +33,7 @@
             <TextView android:textColor="#000" android:textSize="15dp" android:text="Pág." android:textStyle="bold"/>
         </TableRow>
         <TableRow>
-            <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_vehiculo_ha" android:text="24 UM" android:paddingRight="10dp" />
+            <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_vehiculo_hp" android:text="24 UM" android:paddingRight="10dp" />
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_vehiculo_bf" android:text="4" android:paddingRight="10dp" />
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_vehiculo_bl" android:text="5" android:paddingRight="10dp" />
             <TextView android:textColor="#000" android:textSize="15dp" android:id="@+id/item_vehiculo_bt" android:text="5" android:paddingRight="10dp" />

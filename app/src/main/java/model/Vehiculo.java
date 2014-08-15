@@ -18,9 +18,38 @@ public class Vehiculo {
     private ArrayList<Regla> listaReglas;
     private ArrayList<Arma> listaArmas;
 
+    public ArrayList<TipoVehiculo> getListaTipoVehiculo() {
+        return listaTipoVehiculo;
+    }
+
+    public void setListaTipoVehiculo(ArrayList<TipoVehiculo> listaTipoVehiculo) {
+        this.listaTipoVehiculo = listaTipoVehiculo;
+    }
+
+    public ArrayList<Arma> getListaArmas() {
+        return listaArmas;
+    }
+
+    public void setListaArmas(ArrayList<Arma> listaArmas) {
+        this.listaArmas = listaArmas;
+    }
+
+    public ArrayList<Regla> getListaReglas() {
+        return listaReglas;
+    }
+
+    public void setListaReglas(ArrayList<Regla> listaReglas) {
+        this.listaReglas = listaReglas;
+    }
+    public void setTipoVehiculo(TipoVehiculo tVehiculo){
+        this.listaTipoVehiculo.add(tVehiculo);
+    }
+    private ArrayList<TipoVehiculo> listaTipoVehiculo;
+
     public Vehiculo(){
         this.listaReglas = new ArrayList<Regla>();
         this.listaArmas = new ArrayList<Arma>();
+        this.listaTipoVehiculo = new ArrayList<TipoVehiculo>();
     }
 
     public String getNombre() {

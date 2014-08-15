@@ -26,10 +26,12 @@ import java.util.ArrayList;
 import adapters.ArmasAdapter;
 import adapters.InfanteriaAdapter;
 import adapters.ReglasAdapter;
+import adapters.VehiculoAdapter;
 import model.Arma;
 import model.Infanteria;
 import model.Regla;
 import model.TipoArma;
+import model.TipoVehiculo;
 import model.Vehiculo;
 
 /**
@@ -188,17 +190,44 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                             if(objVehiculo != null){
 
                                 Vehiculo vehiculo = new Vehiculo();
-                                vehiculo.setSlot(objVehiculo.getString("SLOT"));
-                                vehiculo.setNombre(objVehiculo.getString("NOMBRE"));
+
+                                vehiculo.setSlot(objVehiculo.getString("Slot"));
+
+
+                                vehiculo.setNombre(objVehiculo.getString("Nombre"));
+                                vehiculo.setHp(objVehiculo.getInt("HP"));
                                 vehiculo.setBf(objVehiculo.getInt("BF"));
                                 vehiculo.setBl(objVehiculo.getInt("BL"));
                                 vehiculo.setBt(objVehiculo.getInt("BT"));
                                 vehiculo.setPa(objVehiculo.getInt("PA"));
-                                vehiculo.setPagina(objVehiculo.getInt("PAGINA"));
+                                vehiculo.setPagina(objVehiculo.getInt("Pagina"));
+
+                                JSONArray jsonTiposVehiculo = objVehiculo.getJSONArray("TipoVehiculo");
+                                for(positionArma = 0; positionArma < jsonTiposVehiculo.length(); positionArma++){
+                                    JSONObject objTipoVehiculo = jsonTiposVehiculo.getJSONObject(positionArma);
+                                    TipoVehiculo tVehiculo = new TipoVehiculo();
+                                    tVehiculo.setNombre(objTipoVehiculo.getString("Nombre"));
+
+                                    if(objTipoVehiculo.isNull("Pagina"))
+                                        tVehiculo.setPagina(0);
+                                    else
+                                        tVehiculo.setPagina(objTipoVehiculo.getInt("Pagina"));
+
+                                    if(objTipoVehiculo.isNull("Descripcion"))
+                                        tVehiculo.setDescripcion("");
+                                    else
+                                        tVehiculo.setDescripcion(objTipoVehiculo.getString("Descripcion"));
+
+                                    tVehiculo.setId(objTipoVehiculo.getInt("Id"));
+                                    tVehiculo.setCodigoTipoVehiculo(objTipoVehiculo.getString("CodigoTipoVehiculo"));
+
+                                    vehiculo.setTipoVehiculo(tVehiculo);
+                                }
 
                                 JSONArray jsonArmas = objVehiculo.getJSONArray("Armas");
                                 for(positionArma = 0; positionArma < jsonArmas.length(); positionArma++){
                                     //TODO: Obtener armas
+
                                 }
 
                                 JSONArray jsonReglas = objVehiculo.getJSONArray("Reglas");
@@ -207,22 +236,29 @@ public class ReaderJsonData extends AsyncTask<String, Integer, Boolean> {
                                 }
 
                                 String slotVehiculo = vehiculo.getSlot();
-
-                                if(slotVehiculo == "CG"){
+                                Log.d("TEST", "SLOT:" + slotVehiculo);
+                                if(slotVehiculo.equals("CG")){
                                     alistaCG.add(vehiculo);
-                                }else if(slotVehiculo == "LINEA"){
+                                }else if(slotVehiculo.equals("LINEA")){
                                     alistaLinea.add(vehiculo);
-                                }else if(slotVehiculo == "ELITE"){
+                                }else if(slotVehiculo.equals("ELITE")){
                                     alistaElite.add(vehiculo);
-                                }else if(slotVehiculo == "APOYO PESADO"){
+                                }else if(slotVehiculo.equals("APOYO PESADO")){
                                     alistaApoyoPesado.add(vehiculo);
-                                }else if(slotVehiculo == "ATAQUE RAPIDO"){
+                                }else if(slotVehiculo.equals("ATAQUE RAPIDO")){
                                     alistaAtaqueRapido.add(vehiculo);
-                                }else if(slotVehiculo == "TRANSPORTE ASIGNADO"){
-                                    alistaLinea.add(vehiculo);
-                                }
+                                }//else if(slotVehiculo == "TRANSPORTE ASIGNADO"){
+                                //    alistaLinea.add(vehiculo);
+                                //}
                             }
                         }
+
+                        listaCG.setAdapter(new VehiculoAdapter(context, activity, alistaCG));
+             //           listaLinea.setAdapter(new VehiculoAdapter(context, activity, alistaLinea));
+              //          listaElite.setAdapter(new VehiculoAdapter(context, activity, alistaElite));
+                        Log.d("TEST", String.valueOf(alistaApoyoPesado.size()));
+                        listaApoyoPesado.setAdapter(new VehiculoAdapter(context, activity, alistaApoyoPesado));
+              //          listaAtaqueRapido.setAdapter(new VehiculoAdapter(context, activity, alistaAtaqueRapido));
                     }
                 }
             } catch (Exception Ex) {

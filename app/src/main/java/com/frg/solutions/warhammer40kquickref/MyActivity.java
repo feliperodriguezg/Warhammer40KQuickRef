@@ -279,6 +279,8 @@ public class MyActivity extends Activity implements ActionBar.TabListener {
                 reader.listaAtaqueRapido = (ListView)tabs.findViewById(R.id.listVAtaqueRapido);
             }
             if(tabIndex == 3){
+                reader.Tab = R.layout.tab_vehiculos;
+
                 rootView = inflater.inflate(R.layout.tab_vehiculos, container, false);
 
                 Resources res = getResources();
